@@ -1,0 +1,108 @@
+%YAML:1.0
+
+# Calibration results 
+# ====================
+# Camera-system parameters:
+# 	cam0 (/camera/infra1/image_rect_raw):
+# 	 type: <class 'aslam_cv.libaslam_cv_python.DistortedPinholeCameraGeometry'>
+# 	 distortion: [ 0.00217604 -0.00119893  0.00089021  0.00070857] +- [0.00206402 0.00216221 0.00051422 0.00057229]
+# 	 projection: [383.64189268 383.98049816 317.73825089 247.31121002] +- [0.19365043 0.33004192 0.77408078 1.02391389]
+# 	 reprojection error: [-0.000001, -0.000103] +- [0.102617, 0.087830]
+
+# 	cam1 (/camera/infra2/image_rect_raw):
+# 	 type: <class 'aslam_cv.libaslam_cv_python.DistortedPinholeCameraGeometry'>
+# 	 distortion: [ 0.004101   -0.00365819  0.00052617  0.00059846] +- [0.00212022 0.00227003 0.00049242 0.00054839]
+# 	 projection: [383.56777333 383.83239061 318.27981638 247.31315475] +- [0.1895809  0.31748158 0.75846257 1.0069885 ]
+# 	 reprojection error: [-0.000004, -0.000100] +- [0.101934, 0.086491]
+
+# 	baseline T_1_0:
+# 	 q: [-0.00009997 -0.0000104  -0.00003205  0.99999999] +- [0.00099916 0.00123031 0.00017383]
+# 	 t: [-0.05008173  0.00011632 -0.000135  ] +- [0.0000482  0.00004269 0.00011732]
+
+
+
+# Target configuration
+# ====================
+
+#   Type: aprilgrid
+#   Tags: 
+#     Rows: 3
+#     Cols: 3
+#     Size: 0.04 [m]
+#     Spacing 0.012 [m]
+
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+Camera.type: "PinHole"
+
+# Camera calibration and distortion parameters (OpenCV) 
+Camera.fx: 383.64189268
+Camera.fy: 383.98049816
+Camera.cx: 317.73825089
+Camera.cy: 247.31121002
+
+Camera.k1: 0.00217604
+Camera.k2: -0.00119893
+Camera.p1: 0.00089021
+Camera.p2: 0.00070857
+
+Camera.bFishEye: 0
+
+Camera.width: 640
+Camera.height: 480
+
+# Camera frames per second 
+Camera.fps: 30.0
+
+# stereo baseline times fx
+Camera.bf: 50.08173
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+# Close/Far threshold. Baseline times.
+ThDepth: 35.0
+
+#--------------------------------------------------------------------------------------------
+# Stereo Rectification. Only if you need to pre-rectify the images.
+# Camera.fx, .fy, etc must be the same as in LEFT.P
+#--------------------------------------------------------------------------------------------
+
+# Not needed
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 1200
+
+# ORB Extractor: Scale factor between levels in the scale pyramid 	
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid	
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast			
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500
+

@@ -1,12 +1,13 @@
 <launch>
-    <node name="orb_slam3_stereo" pkg="orb_slam3_ros_wrapper" type="orb_slam3_ros_wrapper_stereo" output="screen">
+    <node name="orb_slam3_stereo" pkg="orb_slam3_ros_wrapper" type="orb_slam3_ros_wrapper_stereo" output="log">
         <!-- for D435 stereo camera -->
         <remap from="/camera/left/image_raw"    to="/camera/infra1/image_rect_raw"/>
         <remap from="/camera/right/image_raw"   to="/camera/infra2/image_rect_raw"/>
 
         <!-- Parameters for original ORB-SLAM3 -->
         <param name="voc_file"      type="string"   value="$(find orb_slam3_ros_wrapper)/config/ORBvoc.txt" />
-        <param name="settings_file" type="string"   value="$(find orb_slam3_ros_wrapper)/config/d435_stereo.yaml" />
+        <!-- <param name="settings_file" type="string"   value="$(find orb_slam3_ros_wrapper)/config/d435_stereo.yaml" /> -->
+        <param name="settings_file" type="string"   value="$(find orb_slam3_ros_wrapper)/config/d435_stereo_kalibr.yaml" />
         <param name="do_rectify"    type="bool"     value="false" />
     
         <!-- Parameters for ROS -->

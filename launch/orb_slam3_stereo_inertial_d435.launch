@@ -1,20 +1,15 @@
 <launch>
-
-    <node name="image_decompress_1" pkg="image_transport" type="republish"
-        args="theora in:=/camera/infra1/image_rect_raw raw out:=/camera/infra1/image_rect_raw"
-    />
-    <node name="image_decompress_2" pkg="image_transport" type="republish"
-        args="theora in:=/camera/infra2/image_rect_raw raw out:=/camera/infra2/image_rect_raw"
-    />
-
-    <node name="orb_slam3_stereo" pkg="orb_slam3_ros_wrapper" type="orb_slam3_ros_wrapper_stereo" output="screen">
+    <node name="orb_slam3_stereo_inertial" pkg="orb_slam3_ros_wrapper" type="orb_slam3_ros_wrapper_stereo_inertial" output="screen">
         <!-- for D435 stereo camera -->
         <remap from="/camera/left/image_raw"    to="/camera/infra1/image_rect_raw"/>
         <remap from="/camera/right/image_raw"   to="/camera/infra2/image_rect_raw"/>
+        <!-- <remap from="/imu"                      to="/subscale_esp/imu"/> -->
+        <remap from="/imu"                      to="/imu/data"/>
+
 
         <!-- Parameters for original ORB-SLAM3 -->
         <param name="voc_file"      type="string"   value="$(find orb_slam3_ros_wrapper)/config/ORBvoc.txt" />
-        <param name="settings_file" type="string"   value="$(find orb_slam3_ros_wrapper)/config/d435_stereo.yaml" />
+        <param name="settings_file" type="string"   value="$(find orb_slam3_ros_wrapper)/config/d435_stereo_inertial_kalibr.yaml" />
         <param name="do_rectify"    type="bool"     value="false" />
     
         <!-- Parameters for ROS -->
